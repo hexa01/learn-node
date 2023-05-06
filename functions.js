@@ -7,6 +7,7 @@ function createNewPost(postContent, postCreator) {
         createdBy: postCreator,
     }).then(function(post) {
         console.log("Post Created")
+        return post;
     }).catch(function(error) {
         console.log("Error creating post: " + error)
     })
