@@ -1,20 +1,18 @@
 const express = require("express");
+const createNewPost = require("./functions");
 const router = express.Router();
 
-// getting data from query string
-router.get("/hi", function(req, res) {
-    console.log(req.query);
-    if (req.query.name != undefined) {
-        res.send("Hello, " + req.query.name);
-    } else {
-        res.send("Hello");
-    }
-});
-
 // getting JSON data from request body
-router.post("/bye", function(req, res) {
-    console.log(req.body);
-    res.send("Bye Bye")
+router.post("/", function(req, res) {
+    createNewPost(req.body.postContent, req.body.postCreatedBy)
+        .then(function(post) {
+            res.send("Post Created Successfully")
+        })
+        .catch(function(error) {
+            res.send("Error creating post")
+        })
+
+
 })
 
 
