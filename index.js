@@ -2,12 +2,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routesFromAnotherFile = require("./routes");
-
+const cors = require("cors")
 const httpServer = express();
 
 // middleware to parse json body
 httpServer.use(express.json());
 
+//allowing cors
+httpServer.use(cors())
 httpServer.use(routesFromAnotherFile);
 
 
